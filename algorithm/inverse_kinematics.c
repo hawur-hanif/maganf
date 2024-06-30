@@ -1,5 +1,3 @@
-#include <iostream>
-#include <math.h>
 //unfinished
 void inverse_kinematics(float* leg_position, float x, float y, float z) {
     // x, y sumbu horizontal, z sumbu vertikal
@@ -25,31 +23,17 @@ void inverse_kinematics(float* leg_position, float x, float y, float z) {
     leg_position[0] = leg_position[0] + 1;
 }
 
-int main() {
-    int length_leg_position = 20;
-    int total_legs = 6;
-    float leg_position[length_leg_position];
-    leg_position[0] = 1;
+void to_normal_angle(float* leg_position, float* leg_angle) {
+    float rest_top = 81.1845; // 2.0, -0.5
+    float rest_bot = -136.821;
 
-    float x_pos[6];
-    float y_pos[6];
-    float z_pos[6];
-
-    for(int i = 0; i<total_legs ; i++){
-        x_pos[i] = 0.0;
-        y_pos[i] = 2.0;
-        z_pos[i] = -0.5;
-    }
-
-    for (int i = 0; i < total_legs; i++){
-        if ((int)leg_position[0] >= 7) {
-            leg_position[0] = 1.0;
+    for (int i = 1; i<19 ; i++){
+        if (i % 3 == 2){
+            leg_angle[i] = rest_top - leg_position[i]; // rotate clockwise
+        } else if (i % 3 == 0){
+            leg_angle[i] = leg_position[i] - rest_bot; // rotate counterclockwise
+        } else{
+            leg_angle[i] = leg_position[i];
         }
-        inverse_kinematics(leg_position, x_pos[i], y_pos[i], z_pos[i]);
     }
-
-    for (int i=0; i<total_legs; i++){
-        std::cout << leg_position[i*3 + 1] << " " << leg_position[i*3 + 2] << " " << leg_position[i*3 + 3] << "\n";
-    }
-    
 }
