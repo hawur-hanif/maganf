@@ -19,16 +19,10 @@ int main() {
     float up_pos[3] = {0.0, 2.0, -1.0};
     float down_pos[3] = {0.0, 3.0, -2.0};
 
-    // posisi yang diinginkan, mengacu pada koordinat kartesian kuadran 4(panjang vektor x+y menjadi sumbu-x dan z menjadi sumbu y) dengan pusat 0,0
-    float x_pos[6];
-    float y_pos[6];
-    float z_pos[6];
-
-    for(int i = 0; i<total_legs ; i++){
-        x_pos[i] = 0.0;
-        y_pos[i] = 2.0;
-        z_pos[i] = -1.0;
-    }
+    // posisi yang diinginkan, mengacu pada grafik 3d
+    float x_pos[6] = {3.49, 7.0, 3.53, -3.82, -7.0, -3.49};
+    float y_pos[6] = {6.1, 0.0, -6.1, -5.92, 0.0, 6.1};
+    float z_pos[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 
     for (int i = 0; i < total_legs; i++){
         if ((int)leg_position[0] >= 7) {
